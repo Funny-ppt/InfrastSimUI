@@ -32,7 +32,7 @@ const translate_dict = {
           <template v-for="(name, key) in display_props" :key="name">
             <tr v-if="key in state">
               <td>{{ name }}</td>
-              <td>{{ state[key].toFixed(2) }}</td>
+              <td>{{ state[key] }}</td>
             </tr>
           </template>
           <template v-for="(v, propName) in state['global-props']" :key="propName">

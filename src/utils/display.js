@@ -88,11 +88,11 @@ export function format_time(seconds) {
 
 export function format_details(details, dict, conv) {
   const res = details['details']
-    .filter((detail) => !detail.disabled && Math.abs(detail.value) > 1e-6)
+    .filter((detail) => !detail.disabled && detail.value != 0)
     .map(
       (detail) =>
         `${translate(detail.tag, dict)}${detail.value > 0 ? '+' : ''}`
-        + (conv ? conv(detail.value) : detail.value.toFixed(2))
+        + (conv ? conv(detail.value) : detail.value)
     )
     .join(' ')
   return res !== '' ? `（${res}）` : ''

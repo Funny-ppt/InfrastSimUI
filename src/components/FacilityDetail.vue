@@ -20,12 +20,12 @@ const facility_state = inject('facility_state')
         <template v-if="operator !== null">
           <td>{{ operator.name }}</td>
           <td>
-            {{ operator.efficiency.toFixed(2) }}
+            {{ operator.efficiency / 100.0 }}
             {{ format_details(operator['efficiency-details']) }}
           </td>
           <td>{{ operator.mood.toFixed(2) }}</td>
           <td>
-            {{ operator['mood-consume-rate'].toFixed(2) }}
+            {{ operator['mood-consume-rate'] / 100.0 }}
             {{ format_details(operator['mood-consume-rate-details']) }}
           </td>
           <td> {{ format_time(operator['working-time-seconds']) }} </td>

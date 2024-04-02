@@ -1,4 +1,5 @@
 #!/bin/bash
+#set -e  # 如果任何命令以非零状态退出，则立即终止脚本
 
 # GitHub 仓库和工作流信息
 REPO_OWNER="Funny-ppt"
@@ -26,7 +27,12 @@ if [ "$LAST_RUNID" != "$LATEST_RUN" ]; then
     rm -r tmp/*
     rm tmp/.stamp
   fi
-  gh run download "$LATEST_RUN" -R "$REPO_OWNER/$REPO_NAME" -n "$ARTIFACT_NAME" -D tmp
+
+  if ! gh run download "$LATEST_RUN" -R "$REPO_OWNER/$REPO_NAME" -n "$ARTIFACT_NAME" -D tmp; then
+    echo "gh command failed... exit"
+    exit 1
+  fi
+
   # 为 dotnet.runtime.js 中的 import 添加 /* @vite-ignore */
   sed -i 's|import(\([^)]*\))|import(/* @vite-ignore */ \1)|g' tmp/_framework/dotnet.runtime.js
   rm -r src/wasm

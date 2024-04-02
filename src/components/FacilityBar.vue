@@ -49,18 +49,18 @@ function collect() {
       <template v-if="isWorkingStation">
         <div>
           容量：{{ facility_state.capacity }}
-          {{ format_details(facility_state['capacity-details'], undefined, (v) => v.toFixed(0)) }}
+          {{ format_details(facility_state['capacity-details'], undefined) }}
         </div>
         <div>
-          效率：{{ totalEfficiency.toFixed(2) }}（工作站{{ facility_state['base-efficiency'] }}+干员{{
-            facility_state['operators-efficiency'].toFixed(2)
+          效率：{{ totalEfficiency }}（工作站{{ facility_state['base-efficiency'] }}+干员{{
+            facility_state['operators-efficiency']
           }}<template v-if="get_global_eff() != 0.0">+全局{{get_global_eff()}}</template>）
         </div>
         <template v-if="facility_state.type === 'Manufacturing'">
           <div>产物：{{ facility_state['product'] || '未设定' }}</div>
           <template v-if="facility_state['product']">
             <div>已完成：{{ facility_state['product-count'] }}</div>
-            <div>进度：{{ Math.round(facility_state.progress * 100) }}%</div>
+            <div>进度：{{ Math.round(facility_state['progress-percentage'] * 100) }}%</div>
             <div>剩余时间： {{ format_time(get_remains()) }}</div>
           </template>
         </template>
@@ -68,7 +68,7 @@ function collect() {
           <div>策略：{{ get_current_product(facility_state) }}</div>
           <div>已完成：{{ facility_state['orders'].length }}</div>
           <template v-if="facility_state['current-order']">
-            <div>进度：{{ Math.round(facility_state.progress * 100) }}%</div>
+            <div>进度：{{ Math.round(facility_state['progress-percentage'] * 100) }}%</div>
             <div>剩余时间： {{ format_time(get_remains()) }}</div>
           </template>
         </template>

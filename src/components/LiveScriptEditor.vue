@@ -1,6 +1,6 @@
 <template>
     <div class="editor-container">
-        <n-input placeholder="" type="textarea" v-model:value="scripts" style="flex= 1;" />
+        <n-input placeholder="" type="textarea" v-model:value="scripts" style="flex: 1;" />
         <div class="action-bar">
             <n-select></n-select>
             <n-button @click="() => state_manager.create_cp()">创建分支</n-button>

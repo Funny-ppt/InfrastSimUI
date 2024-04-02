@@ -85,11 +85,11 @@ export class WasmSimulator {
     if ('operators' in state) {
       append(`setOps ${state['operators'].join(' ')}`);
     }
-    if ('drones' in state) {
-      append(`useDrones ${state['drones']}`);
+    if ('drone' in state) {
+      append(`useDrones ${state['drone']}`);
     }
     if ('collect' in state) {
-      append(`collect ${state['collect']}`);
+      append(`collect ${state['collect'] == 0 ? '' : state['collect']}`);
     }
 
     this.execute_script(script)
