@@ -62,7 +62,7 @@ export class WasmSimulator {
   }
 
   set_facility_state(facility, state) {
-    var script = `with ${facility}`
+    var script = `with ${facility.replace(' ', '_')}`
     const append = function(content) {
       script = script + '; ' + content
     }
